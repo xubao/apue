@@ -1,12 +1,12 @@
-# ½ø³ÌµÄset-user-id
+# è¿›ç¨‹çš„set-user-id
 
-Ã¿¸ö½ø³ÌÓĞ6¸öÏà¹ØµÄID
+æ¯ä¸ªè¿›ç¨‹æœ‰6ä¸ªç›¸å…³çš„ID
 real user ID, real group ID
 effective user ID, effective group ID, supplementary group IDs
 saved set-user-ID, saved set-group-ID
 
-real user ID ÊÇÖ¸¸Ã½ø³ÌÊÇË­Æô¶¯µÄ¡£¶øµ±½ø³Ì·ÃÎÊÄ³¸öÎÄ¼şÊ±£¬»áÒÀ¾İeffective uesr id¼ì²éÊÇ·ñÓĞÈ¨ÏŞ·ÃÎÊ¡£
-effective user ID Ò»°ãºÍreal user ID ÏàÍ¬¡£Èç¹û¸ÃÎÄ¼şÉèÖÃÁËËüµÄset-user-id bit£¬ÔòÖ´ĞĞÕâ¸öÎÄ¼şÊ±£¬½ø³ÌµÄeffective uer idµÈÓÚ¸ÃÎÄ¼şµÄowner id.
+real user ID æ˜¯æŒ‡è¯¥è¿›ç¨‹æ˜¯è°å¯åŠ¨çš„ã€‚è€Œå½“è¿›ç¨‹è®¿é—®æŸä¸ªæ–‡ä»¶æ—¶ï¼Œä¼šä¾æ®effective uesr idæ£€æŸ¥æ˜¯å¦æœ‰æƒé™è®¿é—®ã€‚
+effective user ID ä¸€èˆ¬å’Œreal user ID ç›¸åŒã€‚å¦‚æœè¯¥æ–‡ä»¶è®¾ç½®äº†å®ƒçš„set-user-id bitï¼Œåˆ™æ‰§è¡Œè¿™ä¸ªæ–‡ä»¶æ—¶ï¼Œè¿›ç¨‹çš„effective uer idç­‰äºè¯¥æ–‡ä»¶çš„owner id.
  
 ```c
 #include <unistd.h>
@@ -24,26 +24,26 @@ int main()
        return 0;
 }
 ``` 
-Ö´ĞĞ½á¹û£º
+æ‰§è¡Œç»“æœï¼š
 ```
 $ ll
 total 16
--rwxrwxr-x 1 xubao xubao 8752 5ÔÂ  18 10:27 a.out
+-rwxrwxr-x 1 xubao xubao 8752 5æœˆ  18 10:27 a.out
 $ ./a.out 
 real user id is 1000
 effective user id is 1000
-//ÒÔµ±Ç°ÓÃ»§Ö´ĞĞa.out, real user idºÍeffective user id¶¼ÊÇµ±Ç°ÓÃ»§id 1000
+//ä»¥å½“å‰ç”¨æˆ·æ‰§è¡Œa.out, real user idå’Œeffective user idéƒ½æ˜¯å½“å‰ç”¨æˆ·id 1000
 
 $ sudo ./a.out 
 real user id is 0
 effective user id is 0
-//ÒÔrootÖ´ĞĞa.out, real user idºÍeffective user id¶¼ÊÇrootid 0
+//ä»¥rootæ‰§è¡Œa.out, real user idå’Œeffective user idéƒ½æ˜¯rootid 0
 
 $ sudo chown test a.out 
 $ ll                                          
 total 16
--rwxrwxr-x 1 test  xubao 8752 5ÔÂ  18 10:27 a.out
-//¸Ä±äa.outµÄownerÎªtestÓÃ»§
+-rwxrwxr-x 1 test  xubao 8752 5æœˆ  18 10:27 a.out
+//æ”¹å˜a.outçš„ownerä¸ºtestç”¨æˆ·
 
 $ ./a.out 
 real user id is 1000
@@ -51,13 +51,13 @@ effective user id is 1000
 $ sudo ./a.out 
 real user id is 0
 effective user id is 0
-//½á¹ûÒ»Ñù¡£
+//ç»“æœä¸€æ ·ã€‚
 
 $ sudo chmod u+s a.out 
 $ ll
 total 16
--rwsrwxr-x 1 test  xubao 8752 5ÔÂ  18 10:27 a.out
-//ÉèÖÃa.outµÄset-user-id bit
+-rwsrwxr-x 1 test  xubao 8752 5æœˆ  18 10:27 a.out
+//è®¾ç½®a.outçš„set-user-id bit
                             
 $ ./a.out 
 real user id is 1000
@@ -65,5 +65,5 @@ effective user id is 1001
 $ sudo ./a.out 
 real user id is 0
 effective user id is 1001
-//real use idÊÇÖ´ĞĞ³ÌĞòµÄÓÃ»§id£¬¶øeffective user idÊÇa.outµÄowner id
+//real use idæ˜¯æ‰§è¡Œç¨‹åºçš„ç”¨æˆ·idï¼Œè€Œeffective user idæ˜¯a.outçš„owner id
 ```
